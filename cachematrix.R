@@ -1,12 +1,10 @@
 #In this function we create a cache of a matrix and its inverse. 
-#If a new matrix is input it calculates the inverse.
-#If the previously used matrix is input it calls cached data.
 
 makeCacheMatrix <- function(x = matrix()) { #Creating a cache
 	inv <- NULL 
 	setMatrix <- function(y){ #Store matrix
-		x <- y
-		inv <- NULL
+		x <<- y
+		inv <<- NULL
 	}
 	getMatrix <- function(){ #Retrieve stored matrix
 		x
@@ -21,6 +19,12 @@ makeCacheMatrix <- function(x = matrix()) { #Creating a cache
 			setInverse=setInverse, getInverse=getInverse)
 }
 
+#This function gives the inverse of the input matrix.
+#It first checks if the input matrix is the same as the cache matrix or not.
+#If they are the same, then the inverse will be same as well and so it returns
+#the cached inverse of the matrix, alongwith a message "getting cached data".
+#If they are different, it calculates the inverse of the input matrix,
+#stores it in the cache and returns it.
 
 cacheSolve <- function(x=matrix()) {
 	if(nrow(x) != ncol(x)){ #Check if matrix is square
